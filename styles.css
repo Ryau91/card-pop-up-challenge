@@ -1,0 +1,210 @@
+* {
+    box-sizing: border-box;
+    font-size: 1.25rem;
+}
+
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display:flex;
+    justify-content: center;
+    align-items: end;
+    background-color: darkgreen;
+}
+
+.fan{
+    display:flex;
+    justify-content:  center;
+    position: relative;
+    width: 500px;
+    height: 500px;
+}
+
+.blade{
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    width: 0px;
+    height: 100%;
+}
+.card{
+    position: absolute;
+    width: 150px;
+    height: 210px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-content-box{
+    width: 95%;
+    height: 95%;
+    position: absolute;
+    background-color: white;
+    border: 2px solid grey;
+    border-radius: 15px;
+}
+
+.card-back{
+    width: calc(100% - 15px);
+    height: calc(100% - 15px);
+    border-radius: 15px;
+    border: 5px solid white;
+    position: absolute;
+    background-color: cornflowerblue;
+}
+
+.value-container{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.rank-and-symbol{
+    width: 20%;
+    text-align: center;
+}
+
+.value-container.rotate{
+    rotate: 180deg;
+}
+
+.symbols-container{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.symbol{
+    font-size: 2.75rem;
+    text-align: center
+}
+
+.two.symbol{
+    width:100%;
+}
+
+.row{
+    display: flex;
+    width: 100%;
+    height: 25%;
+    align-items: center;
+    justify-content: center;
+    /* border: 1px solid red; */
+}
+
+.four  > .row > .symbol {
+    width: 40%;
+    position: relative;
+    top: 5px;
+}
+
+/* card 3 */
+.six  > .row > .symbol {
+    width: 40%;
+}
+
+.six.symbols-container {
+    justify-content: space-around;
+}
+
+/* card 4 */
+.eight  > .row > .symbol {
+    width: 40%;
+    position: relative;
+    bottom: 3px;
+}
+
+.eight.symbols-container {
+    justify-content: space-around;
+}
+
+.eight.symbols-container.inner .symbol{
+    position: relative;
+    top: 12px;
+}
+
+/* card 5 */
+
+.ten.symbols-container{
+    justify-content: center;
+}
+
+.ten > .row {
+    width: 100%;
+    height: 22.5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ten.symbols-container.inner > .row {
+    height: 45%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ten.symbols-container > .row > .symbol {
+    font-size: 2rem;
+}
+
+.ten.symbols-container.outer > .row > .symbol {
+    height: 100%;
+    width: 40%;
+    position: relative;
+    top: -8px;
+}
+
+.ten.symbols-container.inner > .row > .symbol {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    top: 14px;
+}
+
+/* rotations and card text colors */
+.blade-1{rotate: -20deg;}
+.blade-2{rotate: -10deg;}
+.blade-3{rotate: 0deg;}
+.blade-4{rotate: 10deg;}
+.blade-5{rotate: 20deg;}
+
+.card-1{color: red;}
+.card-3{color: red;}
+.card-5{color: gold;}
+
+.rotate-180{rotate: 180deg;}
+
+/* need to hover over card attached to blade for card to pop to the front */
+.blade:hover{
+    z-index:1;
+}
+
+/* pop up code */
+.card:hover .card-back{
+    transition-delay: 0.3s;
+    background-color: transparent;
+    border-color: transparent;
+}
+
+/* We don't want the entire card to rotate and move, otherwise the cursor loses focus on the card and resets it. We have to rotate the content-box and the back together instead */
+.card:hover .card-content-box, .card:hover .card-back{
+    animation: popup 2s;
+    animation-timing-function: ease-out;
+}
+
+@keyframes popup {
+    0%     {top: 0px;}
+    15%    {top: -50px; rotate: y 90deg;}
+    30%    {top: -100px; rotate: none;}
+    80%    {top: -100px;}
+    100%   {top: 0px;}
+}
